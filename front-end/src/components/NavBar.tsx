@@ -1,7 +1,12 @@
 import { Link, NavLink } from 'react-router-dom'
 import { assets } from '../assets/frontend_assets/assets'
+import { useState } from 'react'
 
 const NavBar = () => {
+
+  const [visible, setVisible] = useState(false)
+
+
   return (
     <div className='flex items-center justify-between py-5 font-medium'>
       {/* Logo */}
@@ -39,19 +44,20 @@ const NavBar = () => {
         <img src={assets.search_icon} className="w-5 cursor-pointer" />
 
         <div className='group relative'>
-            <img className='w-5 cursor-pointer' src={assets.profile_icon} alt="" />
-            
-            <div className='group-hover:block hidden absolute dropdown-menu right-0 pt-4'>
+          <img className='w-5 cursor-pointer' src={assets.profile_icon} alt="" />
 
-              <div className="flex flex-col gap-2 w-36 py-3 px-5 bg-slate-100 text-gray-500 rounded">
+          <div className='group-hover:block hidden absolute dropdown-menu right-0 pt-4'>
 
-                <p className='cursor-pointer hover:text-black'>My Profile</p>
-                <p className='cursor-pointer hover:text-black'>Orders</p>
-                <p className='cursor-pointer hover:text-black'>Logout</p>
+            <div className="flex flex-col gap-2 w-36 py-3 px-5 bg-slate-100 text-gray-500 rounded">
 
-              </div>
+              <p className='cursor-pointer hover:text-black'>My Profile</p>
+              <p className='cursor-pointer hover:text-black'>Orders</p>
+              <p className='cursor-pointer hover:text-black'>Logout</p>
 
             </div>
+
+          </div>
+
         </div>
 
         <Link to={"/Cart"} className='relative'>
@@ -60,7 +66,21 @@ const NavBar = () => {
           <p className='absolute right-[-5px] bottom-[-5px] w-4 text-center leading-4 bg-black text-white aspect-square rounded-full text-[8px]'>10</p>
 
         </Link>
+
+
+        <img onClick={()=> setVisible(true)} src={assets.menu_icon} className='w-5 cursor-pointer sm:hidden' alt="" />
+
       </div>
+
+      {/* Small Screen SideBar */}
+      <div className={`absolute top-0 right-0 bottom-0 overflow-hidden transition-all bg-white ${visible ? "w-full" : "w-0"}`}>
+        <div className='flex items-center gap-4 p-3'>
+          <img src={assets.dropdown_icon} className='h-4 rotate-180 cursor-pointer' onClick={()=> setVisible(false)} alt="" />
+        </div> 
+      </div>
+
+
+
     </div>
   )
 }
