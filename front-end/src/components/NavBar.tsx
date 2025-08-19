@@ -6,12 +6,12 @@ const NavBar = () => {
 
   const [visible, setVisible] = useState(false)
 
-
   return (
     <div className='flex items-center justify-between py-5 font-medium'>
       {/* Logo */}
-
-      <img src={assets.logo} className='w-36' alt='logo-image' />
+      <Link to={"/"}>
+        <img src={assets.logo} className='w-36' alt='logo-image' />
+      </Link>
       {/* middle links */}
 
       <ul className='hidden sm:flex gap-5 text-sm text-gray-700'>
@@ -68,17 +68,24 @@ const NavBar = () => {
         </Link>
 
 
-        <img onClick={()=> setVisible(true)} src={assets.menu_icon} className='w-5 cursor-pointer sm:hidden' alt="" />
+        <img onClick={() => setVisible(true)} src={assets.menu_icon} className='w-5 cursor-pointer sm:hidden' alt="" />
 
       </div>
 
       {/* Small Screen SideBar */}
       <div className={`absolute top-0 right-0 bottom-0 overflow-hidden transition-all bg-white ${visible ? "w-full" : "w-0"}`}>
-        <div className='flex items-center gap-4 p-3'>
-          <img src={assets.dropdown_icon} className='h-4 rotate-180 cursor-pointer' onClick={()=> setVisible(false)} alt="" />
-        </div> 
-      </div>
 
+        <div className='flex flex-col text-gray-600'>
+          <div className='flex items-center gap-4 p-3' onClick={() => setVisible(false)} >
+            <img src={assets.dropdown_icon} className='h-4 rotate-180 cursor-pointer' alt="" />
+            <p className='cursor-pointer hover:text-black'>Back</p>
+          </div>
+          <NavLink onClick={() => setVisible(!visible)} className={"py-2 pl-6 border border-gray-600 hover:text-black"} to={"/"}>HOME</NavLink>
+          <NavLink onClick={() => setVisible(!visible)} className={"py-2 pl-6 border border-gray-600 hover:text-black"} to={"/COLLECTION"}>COLLECTION</NavLink>
+          <NavLink onClick={() => setVisible(!visible)} className={"py-2 pl-6 border border-gray-600 hover:text-black"} to={"/ABOUT"}>ABOUT</NavLink>
+          <NavLink onClick={() => setVisible(!visible)} className={"py-2 pl-6 border border-gray-600 hover:text-black"} to={"/CONTACT"}>CONTACT</NavLink>
+        </div>
+      </div>
 
 
     </div>
