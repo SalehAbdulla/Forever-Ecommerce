@@ -8,12 +8,13 @@ const NavBar = () => {
 
   return (
     <div className='flex items-center justify-between py-5 font-medium'>
+      
       {/* Logo */}
       <Link to={"/"}>
         <img src={assets.logo} className='w-36' alt='logo-image' />
       </Link>
-      {/* middle links */}
 
+      {/* middle links */}
       <ul className='hidden sm:flex gap-5 text-sm text-gray-700'>
 
         <NavLink to='/' className="flex flex-col items-center gap-1">
@@ -38,7 +39,7 @@ const NavBar = () => {
 
       </ul>
 
-      {/* right icons 3 icons with dropdown menu */}
+      {/* right icons 3 icons dropdown menu */}
       <div className='flex items-center gap-6'>
 
         <img src={assets.search_icon} className="w-5 cursor-pointer" />
@@ -53,7 +54,7 @@ const NavBar = () => {
               <p className='cursor-pointer hover:text-black'>My Profile</p>
               <p className='cursor-pointer hover:text-black'>Orders</p>
               <p className='cursor-pointer hover:text-black'>Logout</p>
-
+ 
             </div>
 
           </div>
